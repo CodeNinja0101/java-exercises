@@ -2,7 +2,10 @@ package src.basics;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AnagramString {
 
@@ -19,6 +22,12 @@ public class AnagramString {
         }
 
         if (isAnagram(str1, str2)) {
+            System.out.println(str1 + " & " + str2 + "\n- are anagram");
+        } else {
+            System.out.println("Not Anagram");
+        }
+
+        if (identifyAnagramOrNot(str1, str2)) {
             System.out.println(str1 + " & " + str2 + "\n- are anagram");
         } else {
             System.out.println("Not Anagram");
@@ -44,47 +53,46 @@ public class AnagramString {
         return Arrays.equals(charArray1, charArray2);
     }
 
+
     //using HashMap Approach
     public static boolean isAnagram(String str1, String str2) {
-//        Map<Character, Integer> map = new HashMap<>();
-//
-//        str1 = str1.replaceAll("\\s+", "").toLowerCase();
-//        str2 = str2.replaceAll("\\s+", "").toLowerCase();
-//
-//        if (str1.length() != str2.length()) {
-//            return false;
-//        }
-//        for (char c : str1.toCharArray()) {
-//            map.put(c, map.getOrDefault(c, 0) + 1);
-//        }
-//
-//        for (char c : str2.toCharArray()) {
-//            if (!map.containsKey(c) || map.get(c) ==0)
-//                return false;
-//            map.put(c,map.get(c)-1);
-//        }
-//return true;
-//    }
-
 
         Map<Character, Integer> map = new HashMap<>();
 
-        str1 = str1.replaceAll("\\s+","").toLowerCase();
-        str2 = str2.replaceAll("\\s+","").toLowerCase();
+        str1 = str1.replaceAll("\\s+", "").toLowerCase();
+        str2 = str2.replaceAll("\\s+", "").toLowerCase();
 
-        if (str1.length() != str2.length()){
-        return false;
+        if (str1.length() != str2.length()) {
+            return false;
         }
 
-        for(char c : str1.toCharArray()){
-            map.put(c,map.getOrDefault(c,0)+1);
+        for (char c : str1.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
-        for (char c : str2.toCharArray()){
-            if (!map.containsKey(c) || map.get(c) ==0)
+        for (char c : str2.toCharArray()) {
+            if (!map.containsKey(c) || map.get(c) == 0)
                 return false;
-            map.put(c, map.get(c)-1);
+            map.put(c, map.get(c) - 1);
         }
         return true;
+    }
+
+
+    //Using Stream API
+    public static boolean identifyAnagramOrNot(String str1, String str2) {
+        String charStream1 = str1.toLowerCase().replaceAll("\\s+","")
+                .chars().sorted()
+                .mapToObj(c -> (char)c)
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+
+        String charStream2 = str2.toLowerCase().replaceAll("\\s","")
+                .chars().sorted()
+                .mapToObj(c -> (char)c)
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+
+        return charStream1.equals(charStream2);
     }
 }
