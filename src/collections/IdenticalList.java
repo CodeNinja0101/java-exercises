@@ -34,25 +34,34 @@ public class IdenticalList {
 
         identicalListUsingContainsAll(list01, list02);
 
-
         if (areIdenticalUsingStream(list01, list02)) {
             System.out.println(list1 + " & " + list2 + " are identical");
         } else {
             System.out.println("Not-identical lists");
         }
 
+        //Using Objects.deepEquals
         if (Objects.deepEquals(list1, list2)) {
             System.out.println(list1 + " & " + list2 + " are identical");
         } else {
             System.out.println("Not-identical lists");
         }
+
+        if (areIdenticalUsingSort(list1, list2)) {
+            System.out.println(list1 + " & " + list2 + " are identical");
+        } else {
+            System.out.println("Not-identical lists");
+        }
+
+        Object  o = new Object();
     }
 
+    //using equals methos
     public static boolean IdenticalListUsingEquals(List<Integer> list1, List<Integer> list2) {
         return list1.equals(list2);
     }
 
-
+    //using length compare equals methods
     public static boolean isIdentical(List<Integer> str1, List<Integer> str2) {
         if (str1.size() != str2.size()) {
             return false;
@@ -66,6 +75,7 @@ public class IdenticalList {
         return true;
     }
 
+    //Using Set
     public static boolean areIdenticalUsingSet(List<Integer> list1, List<Integer> list2) {
         Set<Integer> set1 = new HashSet<>(list1);
         Set<Integer> set2 = new HashSet<>(list2);
@@ -73,7 +83,7 @@ public class IdenticalList {
         return set1.equals(set2);  // Ignores order but checks if both sets are the same
     }
 
-
+    //Using containsAll
     public static void identicalListUsingContainsAll(List<Integer> list01, List<Integer> list02) {
         if (list01.containsAll(list02) && list02.containsAll(list01)) {
             System.out.println(list01 + " & " + list02 + " are identical");
@@ -82,6 +92,7 @@ public class IdenticalList {
         }
     }
 
+    //Using Streams
     public static boolean areIdenticalUsingStream(List<Integer> list01, List<Integer> list02) {
         if (list01.size() != list02.size()) {
             return false;
@@ -89,5 +100,13 @@ public class IdenticalList {
 
         return IntStream.range(0, list01.size())
                 .allMatch(i -> list01.get(i).equals(list02.get(i)));
+    }
+
+    //Using Collections.sort
+    public static boolean areIdenticalUsingSort(List<Integer> list1, List<Integer> list2) {
+        Collections.sort(list1);
+        Collections.sort(list2);
+
+        return list1.equals(list2);
     }
 }
