@@ -2,7 +2,7 @@ package src.singleton;
 
 public class Singleton {
 
-    //Eager Initialization
+    //Lazy Initialization
 //    private static Singleton instance;
 //    private String str;
 //
@@ -18,6 +18,7 @@ public class Singleton {
 //        return instance;
 //    }
 
+
     //Eager Initialization
 //    private static final Singleton instance = new Singleton();
 //
@@ -27,6 +28,7 @@ public class Singleton {
 //    public static Singleton getInstance() {
 //        return instance;
 //    }
+
 
 //    Thread-Safe Singleton using synchronized
 //    private static Singleton instance;
@@ -41,8 +43,7 @@ public class Singleton {
 //    }
 
 
-//    Double-Checked Locking Singleton
-
+    //Double-Checked Locking Singleton
     private static Singleton instance;
 
     private Singleton() {
