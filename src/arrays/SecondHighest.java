@@ -17,7 +17,7 @@ public class SecondHighest {
         OptionalInt secondHigh = Arrays.stream(num)
                 .distinct()
                 .sorted()
-                .skip(num.length-2)
+                .skip(num.length - 2)
                 .findFirst();
 
         if (secondHigh.isPresent()) {
@@ -32,7 +32,7 @@ public class SecondHighest {
         Optional<Integer> secondHigh = Arrays.stream(num)
                 .distinct()
                 .boxed()
-                .sorted((a,b)-> b.compareTo(a))
+                .sorted((a, b) -> b.compareTo(a))
                 .skip(1)
                 .findFirst();
 
@@ -41,5 +41,5 @@ public class SecondHighest {
         } else {
             System.out.println("No element present");
         }
-        }
+    }
 }
