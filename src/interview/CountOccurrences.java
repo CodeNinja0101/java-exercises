@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+//Given an array of elements, count the occurrences of each element and print the results.
 public class CountOccurrences {
     public static void main(String[] args) {
         String[] items = {"pen", "eraser", "notebook", "pen", "pencil", "notebook"};

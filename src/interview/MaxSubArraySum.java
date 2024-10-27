@@ -3,6 +3,8 @@ package src.interview;
 import java.util.ArrayList;
 import java.util.List;
 
+//Given an array of integers (both positive and negative), find the contiguous subarray
+//(containing at least one number) which has the largest sum and return the sum of that subarray.
 public class MaxSubArraySum {
     public static List<Object> findMax(int[] array) {
         int maxSum = Integer.MIN_VALUE;
